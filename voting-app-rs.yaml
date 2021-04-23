@@ -2,16 +2,16 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
    name: voting-app-rs 
-spec:
+spec: 
    replicas: 3
    selector:
      matchLabels: 
         app: vote
         version: v1
    template:      
-      metadata:
+     metadata:
          name: voting-app-pod 
-         labels:	
+         labels: 	 
              app: vote 
              version: v1
              tier: frontend 
