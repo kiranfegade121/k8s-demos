@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-app
+spec:
+  replicas: 1
+  selectors:
+    matchLabels:
+      app: frontend-app
+  template:
+    metadata:
+      name: frontend-app
+      labels:
+        app: frontend-app
+    spec:
+      containers:
+        - name: frontend-app
+          image: amitfegade121/employee-app-client:lates
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+type: NodePort
+metadata:
+  name: frontend-app-svc
+spec:
+  selectors:
+    app: frontend-app
+  ports:
+    - port: 3000
+      targetPort: 80
+      nodePort: 30000
