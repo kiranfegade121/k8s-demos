@@ -4,7 +4,7 @@ metadata:
   name: frontend-app
 spec:
   replicas: 1
-  selectors:
+  selector:
     matchLabels:
       app: frontend-app
   template:
@@ -15,19 +15,19 @@ spec:
     spec:
       containers:
         - name: frontend-app
-          image: amitfegade121/employee-app-client:lates
+          image: amitfegade121/employee-app-client:latest
           ports:
             - containerPort: 80
 
 ---
 apiVersion: v1
 kind: Service
-type: NodePort
 metadata:
   name: frontend-app-svc
 spec:
-  selectors:
+  selector:
     app: frontend-app
+  type: NodePort
   ports:
     - port: 3000
       targetPort: 80
