@@ -3,7 +3,7 @@ kind: Secret
 metadata:
   name: mysql-secret
 type: Opaque
-data: 
+data:
   MYSQL_ROOT_PASSWORD: cm9vdA==
   MYSQL_DATABASE: aHI=
 
@@ -39,6 +39,14 @@ spec:
                 secretKeyRef:
                   name: mysql-secret
                   key: MYSQL_DATABASE
+          volumeMounts:
+            - mountPath: "/var/lib/mysql"
+              name: mysql-vol
+
+      volumes:
+        - name: mysql-vol
+          persistentVolumeClaim:
+            claimName: my-pvc
 
 ---
 apiVersion: v1
